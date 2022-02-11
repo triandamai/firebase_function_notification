@@ -1,8 +1,7 @@
 interface NotificationModel{
-    user_id:string,
+    user_code:string,
     title:string,
     message:string,
-    token:string,
     created_at:Long,
     updated_at:Long
 }

@@ -10,7 +10,7 @@ const sendNotificationToDevice = (snapshot:QueryDocumentSnapshot,context:EventCo
 
     const getUserToken =  db
     .collection(`user`)
-    .doc(notificationData.user_id)
+    .doc(notificationData.user_code)
     .get()
 
     //antrin semu task
@@ -41,7 +41,7 @@ const sendNotificationToDevice = (snapshot:QueryDocumentSnapshot,context:EventCo
             }
         ).then((result)=>{
             console.log(
-                `Notification has send to ${user.user_id} result: ${result}`
+                `Notification has send to ${user.user_code} result: ${result}`
             )
         })
         .catch((err)=>{
@@ -51,35 +51,6 @@ const sendNotificationToDevice = (snapshot:QueryDocumentSnapshot,context:EventCo
         })
 
     })
-}
-
-const sendBroadcast=(snapshot:QueryDocumentSnapshot,context:EventContext)=>{
-    const notificationData = snapshot.data() as BroadcastModel
-
-    const msg = messaging()
-
-    msg.sendToTopic(
-        notificationData.topic,
-        {
-            notification:{
-                title:notificationData.title,
-                body:notificationData.message
-            }
-        },
-        {
-            priority:"high",
-                timeToLive: 60 * 60 * 24,
-        }
-    ).then((result)=>{
-        console.log(
-            `Success send notification to topic ${notificationData.topic} result: ${result}`
-        )
-    })
-    .catch((err)=>{
-        console.log(`Notification to topic ${notificationData.topic} because  ${err.message}`)
-    })
-
-
 }
 export{
     sendNotificationToDevice

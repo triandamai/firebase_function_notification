@@ -5,8 +5,9 @@
 {
     "notification":[
         {
-            "user_id":"",
+            "user_code":"",
             "message":"",
+            "title":"",
             "type":"",
             "created_at":"",
             "updated_at":""
@@ -20,7 +21,7 @@
 {
        "user":[
         {
-            "user_id":"",
+            "user_code":"",
             "token":"",
             "created_at":"",
             "updated_at":""
